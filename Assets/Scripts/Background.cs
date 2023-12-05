@@ -15,8 +15,14 @@ public class Background : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // create background
         Debug.Log("Started creating background");
+        GameObject Background = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        Background.transform.localScale = new Vector3(1000, 0, 1000);
+        Background.transform.position = new Vector3(12, -1, 12);
         
+        // create play grid
+        Debug.Log("Started creating grid");
         for (int i = 0; i <= 24; i = i + 6) 
         {
             for (int j = 0; j <= 24; j = j + 6)
@@ -24,9 +30,19 @@ public class Background : MonoBehaviour
                 GameObject Cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 Cube.transform.localScale = new Vector3(XScale, YScale, ZScale);
                 Cube.transform.position = new Vector3(XPosition + i, YPosition, ZPosition + j);
+
+                Cube.name = i.ToString() + '-' + j.ToString();
             }
         }
+        
+        
+        
+        
+        
+        
     }
+    
+    
 
     // Update is called once per frame
     void Update()
