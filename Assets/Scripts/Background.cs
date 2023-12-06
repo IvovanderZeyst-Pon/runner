@@ -42,21 +42,17 @@ public class Background : MonoBehaviour
             XIncrease = XIncrease + 6;
         }
         
-        // identify start and end tile
+        // make path
         int XStart = GridDimension / 2;
         int ZStart = 0;
-        int XEnd = GridDimension / 2;
-        int ZEnd = GridDimension - 1;
-        Debug.Log("XStart: " + XStart.ToString());
-        Debug.Log("XStart: " + ZStart.ToString());
-        Debug.Log("XStart: " + XEnd.ToString());
-        Debug.Log("XStart: " + ZEnd.ToString());
+        for (int i = 0; i < GridDimension; i++)
+        {
+            var start_tile = GameObject.Find(XStart.ToString()+ "-"+ ZStart.ToString());
+            start_tile.GetComponent<Renderer>().material.color = new Color(0, 255, 0);
+            ZStart++;
+        }
         
-        var start_tile = GameObject.Find(XStart.ToString()+ "-"+ ZStart.ToString());
-        start_tile.GetComponent<Renderer>().material.color = new Color(0, 255, 0);
-
-        var end_tile = GameObject.Find(XEnd.ToString()+ "-"+ ZEnd.ToString());
-        end_tile.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        
     }
     
     
