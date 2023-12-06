@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Background : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Background : MonoBehaviour
     private int XScale = 5;
     private int YScale = 1;
     private int ZScale = 5;
-    private int GridDimension = 5;
+    private int GridDimension = 6;
     
     // Start is called before the first frame update
     void Start()
@@ -41,12 +42,20 @@ public class Background : MonoBehaviour
             XIncrease = XIncrease + 6;
         }
         
-        // create start tile, TODO, make dynamicly insteasd of hardcoded
-        var start_tile = GameObject.Find("2-0");
-        start_tile.GetComponent<Renderer>().material.color = new Color(0, 255, 0);
+        // identify start and end tile
+        int XStart = GridDimension / 2;
+        int ZStart = 0;
+        int XEnd = GridDimension / 2;
+        int ZEnd = GridDimension - 1;
+        Debug.Log("XStart: " + XStart.ToString());
+        Debug.Log("XStart: " + ZStart.ToString());
+        Debug.Log("XStart: " + XEnd.ToString());
+        Debug.Log("XStart: " + ZEnd.ToString());
         
-        // create end tile, TODO, make dynamicly insteasd of hardcoded
-        var end_tile = GameObject.Find("2-4");
+        var start_tile = GameObject.Find(XStart.ToString()+ "-"+ ZStart.ToString());
+        start_tile.GetComponent<Renderer>().material.color = new Color(0, 255, 0);
+
+        var end_tile = GameObject.Find(XEnd.ToString()+ "-"+ ZEnd.ToString());
         end_tile.GetComponent<Renderer>().material.color = new Color(255, 0, 0);
     }
     
