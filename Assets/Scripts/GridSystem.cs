@@ -116,5 +116,7 @@ public class GridSystem {
         GetXY(worldPosition, out x, out y);
         return GetValue(x, y);
     }
+    
+    public string path
 }
 
