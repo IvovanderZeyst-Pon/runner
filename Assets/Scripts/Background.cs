@@ -5,6 +5,7 @@ using System;
 
 public class Background : MonoBehaviour
 {
+    /*
     private GameObject Cube;
     private int XPosition = 0;
     private int YPosition = 0;
@@ -12,7 +13,7 @@ public class Background : MonoBehaviour
     private int XScale = 5;
     private int YScale = 1;
     private int ZScale = 5;
-    private int GridDimension = 6;
+    private int GridDimension = 60;
     
     // Start is called before the first frame update
     void Start()
@@ -47,10 +48,14 @@ public class Background : MonoBehaviour
         int ZStart = 0;
         for (int i = 0; i < GridDimension; i++)
         {
-            var start_tile = GameObject.Find(XStart.ToString()+ "-"+ ZStart.ToString());
-            start_tile.GetComponent<Renderer>().material.color = new Color(0, 255, 0);
+            var tile = GameObject.Find(XStart.ToString()+ "-" + ZStart.ToString());
+            tile.GetComponent<Renderer>().material.color = new Color(0, 255, 0);//TODO: replace with tags, or other properties or object like
             ZStart++;
         }
+
+        
+        
+        
         
         
     }
@@ -62,4 +67,5 @@ public class Background : MonoBehaviour
     {
         
     }
+    */
 }
