@@ -888,10 +888,6 @@ namespace CodeMonkey.Utils {
             return new Vector3(UnityEngine.Random.Range(lowerLeft.x, upperRight.x), UnityEngine.Random.Range(lowerLeft.y, upperRight.y));
         }
 
-
-
-
-
         public static string GetTimeHMS(float time, bool hours = true, bool minutes = true, bool seconds = true, bool milliseconds = true) {
             string h0, h1, m0, m1, s0, s1, ms0, ms1, ms2;
             GetTimeCharacterStrings(time, out h0, out h1, out m0, out m1, out s0, out s1, out ms0, out ms1, out ms2);
@@ -1512,10 +1508,7 @@ namespace CodeMonkey.Utils {
         public static string GetMonthNameShort(int month) {
             return GetMonthName(month).Substring(0, 3);
         }
-
-
-
-
+        
         public static class ReflectionTools {
 
             public static object CallMethod(string typeName, string methodName) {
@@ -1530,8 +1523,6 @@ namespace CodeMonkey.Utils {
             }
 
         }
-
-
 
         public static bool TestChance(int chance, int chanceMax = 100) {
             return UnityEngine.Random.Range(0, chanceMax) < chance;
