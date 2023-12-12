@@ -24,7 +24,7 @@ public class GridSystem
     private GameObject Cube;
     private int XPosition = 0;
     private int YPosition = 0;
-    private int ZPosition = 0;
+    private int ZPosition = 10;
     private int XScale = 10;
     private int YScale = 10;
     private int ZScale = 0;
@@ -37,6 +37,7 @@ public class GridSystem
         this.cellSize = cellSize;
         //this.originPosition = originPosition;
 
+
         gridArray = new int[width, height];
 
         bool showDebug = true;
@@ -44,28 +45,56 @@ public class GridSystem
         {
             TextMesh[,] debugTextArray = new TextMesh[width, height];
             var XIncrease = 5;
+            var waypointNumber = 0;
             for (int x = 0; x < gridArray.GetLength(0); x++)
             {
                 var YIncrease = 5;
                 for (int y = 0; y < gridArray.GetLength(1); y++)
                 {
+                    // debug
                     debugTextArray[x, y] = UtilsClass.CreateWorldText(gridArray[x, y].ToString(), null,
                         GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f, 30, Color.black,
                         TextAnchor.MiddleCenter);
                     Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.black, 100f);
                     Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.black, 100f);
                     
+                    // create grid
                     GameObject Cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     Cube.transform.localScale = new Vector3(XScale, YScale, ZScale);
                     Cube.transform.position = new Vector3(XPosition + XIncrease, YPosition + YIncrease, ZPosition);
                     Cube.name = x.ToString() + "-" + y.ToString();
                     YIncrease = YIncrease + 10;
+                    
+                    // create start path & waypoints
+                    if (x == gridArray.GetLength(0) / 2)
+                    {
+                        Cube.GetComponent<Renderer>().material.color = new Color(0, 255, 0);
+                        GameObject waypoint = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                        waypoint.transform.localScale = new Vector3(XScale, YScale, ZScale);
+                        waypoint.transform.position = new Vector3(XPosition + XIncrease, YPosition + YIncrease, 3);
+                        waypoint.name = "" + waypointNumber + "";
+                        waypointNumber++;
+                    }
                 }
                 XIncrease = XIncrease + 10;
             }
 
             Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.black, 100f);
             Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.black, 100f);
+            
+            /*
+            // make path
+            int XStart = GridDimension / 2;
+            int ZStart = 0;
+            public GameObject waypoint;
+            for (int i = 0; i < GridDimension; i++)
+            {
+                var tile = GameObject.Find(XStart.ToString() + "-" + ZStart.ToString());
+                tile.GetComponent<Renderer>().material.color = new Color(0, 255, 0); //TODO: replace with tags, or other properties or object like
+                
+                ZStart++;
+            }
+            */
 
             OnGridValueChanged += (object sender, OnGridValueChangedEventArgs eventArgs) =>
             {
